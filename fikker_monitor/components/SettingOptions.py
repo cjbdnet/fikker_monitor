@@ -117,9 +117,10 @@ class SettingOptions(QDialog):
 
     def initSettings(self):
         cwd = join(getcwd(), "log")
-        token = "1398759278:AAFZN4pMgcJ-bL2HhYoiyUYNZiAL-EFMUro"
-        cid = -322832375
-
+        # 必须填写
+        token = ""    # 飞机机器人token str
+        cid = 0       # 机器人消息频道 int
+        
         self._ri.setText(str(180))
         self._trp.setText(cwd)
         self._bt.setText(token)
