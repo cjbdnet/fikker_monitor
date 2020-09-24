@@ -1,0 +1,3 @@
+
+class GetStatusError(Exception):
+    pass
