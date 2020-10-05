@@ -7,18 +7,9 @@ from support.Scrap import getFloat, calStatistics, saveCurrentFlow, get_size, fl
 
 
 class Login(QThread):
-    """
-    这个线程会根据传入的参数登录fikker节点，获取fikker的sessionID值
-    """
     exception = pyqtSignal(dict, str, bool)
 
     def __init__(self, info, i):
-        """
-        :param app: 主窗口类：main.py -> class MainWindow
-        :param node: 登录信息: {"SessionID": None, "login":(ip, port, password)}
-        :param i: 当前需要登录的节点信息所在位置
-        :param info: 整个监控的所有信息
-        """
         super(self.__class__, self).__init__()
         self._info = info
         self._i = i
@@ -115,11 +106,6 @@ class GetStatus(QThread):
     exception = pyqtSignal(dict, str, bool)
 
     def __init__(self, nodeLine, i, info):
-        """
-        :param app: 主窗口类
-        :param i: 节点在信息表中所在位置
-        :param info: 监控信息
-        """
         super(self.__class__, self).__init__()
         self._id = hash(str(nodeLine["flogin"]))
         self._nodeLine = nodeLine
@@ -181,19 +167,9 @@ class GetStatus(QThread):
 
 
 class GetStatusThread(QThread):
-    """
-    这个线程会读取监控信息表中所有节点多线程去获取实时信息, 如果手动传入了监控信息则会改为记录状态
-    记录状态： 非记录状态此线程是获取主窗口当前选择的监控表信息实时获取数据，记录状态是流量统计时
-    后台刷新其他监控表信息获取数据，并且只获取三次后就退出线程
-    """
     exception = pyqtSignal(dict, str, bool)
 
     def __init__(self, app, curName=None, parent=None):
-        """
-        :param app: 主窗口类
-        :param info: 监控信息表
-        :param parent: 父线程
-        """
         super(self.__class__, self).__init__(parent)
         self._app = app
         self._curName = curName
